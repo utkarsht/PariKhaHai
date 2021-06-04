@@ -33,11 +33,11 @@ const AskIntentHandler = {
         const bodyParts = ['Nose', 'Eyes', 'Ears', 'Hairs', 'Stomach', 'Hand', 'Finger', 'Leg', 'BellyButton'].sort(() => .5 - Math.random());
         let bodyPartContent = []
         for (let bp in bodyParts) {
-            bodyPartContent.push('Pari ki ' + bodyParts[bp] + ' kha hai')
+            bodyPartContent.push('Pari ki ' + bodyParts[bp] + ' kaha hai')
         }
     
         return handlerInput.responseBuilder
-            .speak(bodyPartContent[0])
+            .speak(bodyPartContent)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
