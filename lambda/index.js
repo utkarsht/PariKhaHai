@@ -11,12 +11,11 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?';
-        
         let bodyPartContent = null
         fs.readFile('bodyparts', 'utf8' , (err, data) => {
           if (err) {
             console.error(err)
+            bodyPartContent = 'error reading file'
             return
           }
           bodyPartContent = data
