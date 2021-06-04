@@ -18,13 +18,13 @@ const LaunchRequestHandler = {
     handle(handlerInput) {
         return handlerInput.responseBuilder
             .speak('Opening Pari Skill')
-            // .reprompt(speakOutput)
+            .reprompt('Opening Pari Skill')
             .getResponse();
     }
 };
 
 
-const HelloWorldIntentHandler = {
+const AskIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AskIntent';
@@ -153,7 +153,7 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
-        HelloWorldIntentHandler,
+        AskIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,
