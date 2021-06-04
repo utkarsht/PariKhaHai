@@ -37,7 +37,7 @@ const HelloWorldIntentHandler = {
         }
     
         return handlerInput.responseBuilder
-            .speak(bodyPartContent)
+            .speak(bodyPartContent[0])
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
