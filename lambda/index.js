@@ -4,30 +4,31 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
-const fs = require('fs');
+
+const between = function(min, max) {  
+  return Math.floor(
+    Math.random() * (max - min) + min
+  )
+}
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        let bodyPartContent = null
-        fs.readFile('bodyparts', 'utf8' , (err, data) => {
-          if (err) {
-            console.error(err)
-            bodyPartContent = 'error reading file'
-            return
-          }
-          bodyPartContent = data
-        })
+        const bodyParts = ['Nose', 'Eyes', 'Ears', 'Hairs', 'Stomach', 'Hand', 'Finger', 'Leg', 'BellyButton'].sort(() => .5 - Math.random());
+        let bodyPartContent = []
+        for (let bp in bodyParts) {
+            bodyPartContent.push('Pari ki ' + bodyParts[bp] + ' kha hai')
+        }
         
-        console.log(bodyPartContent)
         return handlerInput.responseBuilder
             .speak(bodyPartContent)
             // .reprompt(speakOutput)
             .getResponse();
     }
 };
+
 
 const HelloWorldIntentHandler = {
     canHandle(handlerInput) {
