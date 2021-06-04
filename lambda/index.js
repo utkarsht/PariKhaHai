@@ -14,7 +14,7 @@ const LaunchRequestHandler = {
         const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?';
         
         let bodyPartContent = null
-        fs.readFile('/Users/joe/test.txt', 'utf8' , (err, data) => {
+        fs.readFile('bodyparts', 'utf8' , (err, data) => {
           if (err) {
             console.error(err)
             return
