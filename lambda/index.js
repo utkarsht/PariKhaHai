@@ -16,14 +16,8 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const bodyParts = ['Nose', 'Eyes', 'Ears', 'Hairs', 'Stomach', 'Hand', 'Finger', 'Leg', 'BellyButton'].sort(() => .5 - Math.random());
-        let bodyPartContent = []
-        for (let bp in bodyParts) {
-            bodyPartContent.push('Pari ki ' + bodyParts[bp] + ' kha hai')
-        }
-        
         return handlerInput.responseBuilder
-            .speak(bodyPartContent)
+            .speak('Opening Pari Skill')
             // .reprompt(speakOutput)
             .getResponse();
     }
@@ -33,13 +27,17 @@ const LaunchRequestHandler = {
 const HelloWorldIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AskIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hello World!';
-
+        const bodyParts = ['Nose', 'Eyes', 'Ears', 'Hairs', 'Stomach', 'Hand', 'Finger', 'Leg', 'BellyButton'].sort(() => .5 - Math.random());
+        let bodyPartContent = []
+        for (let bp in bodyParts) {
+            bodyPartContent.push('Pari ki ' + bodyParts[bp] + ' kha hai')
+        }
+    
         return handlerInput.responseBuilder
-            .speak(speakOutput)
+            .speak(bodyPartContent)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
