@@ -4,6 +4,7 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
+const fs = require('fs');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -11,10 +12,20 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?';
-
+        
+        let bodyPartContent = null
+        fs.readFile('/Users/joe/test.txt', 'utf8' , (err, data) => {
+          if (err) {
+            console.error(err)
+            return
+          }
+          bodyPartContent = data
+        })
+        
+        console.log(bodyPartContent)
         return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
+            .speak(bodyPartContent)
+            // .reprompt(speakOutput)
             .getResponse();
     }
 };
