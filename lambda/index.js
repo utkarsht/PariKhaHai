@@ -4,6 +4,7 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
+const bodyParts = ['Nose', 'Eyes', 'Ears', 'Hairs', 'Stomach', 'Hand', 'Finger', 'Leg', 'BellyButton']
 
 const between = function(min, max) {  
   return Math.floor(
@@ -33,13 +34,13 @@ const AskIntentHandler = {
     },
     handle(handlerInput) {
         console.log("Inside AskIntentHandler")
-        const bodyParts = ['Nose', 'Eyes', 'Ears', 'Hairs', 'Stomach', 'Hand', 'Finger', 'Leg', 'BellyButton'].sort(() => .5 - Math.random());
-        let bodyPartContent = []
-        for (let bp in bodyParts) {
-            bodyPartContent.push('Pari ki ' + bodyParts[bp] + ' kaha hai')
-        }
+        const idx = between(0, bodyParts.length)
+        const toRespond = 'Pari ki ' + bodyParts[idx] + ' kaha hai'
+        bodyParts.splice(idx, 1)
+        console.log(bodyParts)
+        
         return handlerInput.responseBuilder
-            .speak(bodyPartContent[between(0, bodyPartContent.length)])
+            .speak(toRespond)
             .reprompt('continuing the session')
             .getResponse();
     }
