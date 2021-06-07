@@ -5,12 +5,6 @@
  * */
 const Alexa = require('ask-sdk-core');
 
-const between = function(min, max) {  
-  return Math.floor(
-    Math.random() * (max - min) + min
-  )
-}
-
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
@@ -38,9 +32,9 @@ const AskIntentHandler = {
         for (let bp in bodyParts) {
             bodyPartContent.push('Pari ki ' + bodyParts[bp] + ' kaha hai')
         }
-    
+        console.log(bodyPartContent)
         return handlerInput.responseBuilder
-            .speak(bodyPartContent)
+            .speak(bodyPartContent[0])
             // .reprompt(bodyPartContent)
             .getResponse();
     }
