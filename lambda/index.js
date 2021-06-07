@@ -38,11 +38,8 @@ const AskIntentHandler = {
         for (let bp in bodyParts) {
             bodyPartContent.push('Pari ki ' + bodyParts[bp] + ' kaha hai')
         }
-        console.log(bodyPartContent)
-        
-        
         return handlerInput.responseBuilder
-            .speak(bodyPartContent[between(0, bodyPartContent.length())])
+            .speak(bodyPartContent[between(0, bodyPartContent.length)])
             .reprompt('continuing the session')
             .getResponse();
     }
