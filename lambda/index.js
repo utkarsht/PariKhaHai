@@ -16,6 +16,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
+        console.log("Inside LaunchRequestHandler")
         return handlerInput.responseBuilder
             .speak('Opening Pari Skill')
             .reprompt('Opening Pari Skill')
@@ -26,10 +27,12 @@ const LaunchRequestHandler = {
 
 const AskIntentHandler = {
     canHandle(handlerInput) {
+        console.log(Alexa.getIntentName(handlerInput.requestEnvelope))
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AskIntent';
     },
     handle(handlerInput) {
+        console.log("Inside AskIntentHandler")
         const bodyParts = ['Nose', 'Eyes', 'Ears', 'Hairs', 'Stomach', 'Hand', 'Finger', 'Leg', 'BellyButton'].sort(() => .5 - Math.random());
         let bodyPartContent = []
         for (let bp in bodyParts) {
@@ -49,8 +52,8 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
+        console.log("Inside HelpIntentHandler")
         const speakOutput = 'You can say hello to me! How can I help?';
-
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
