@@ -38,7 +38,7 @@ const AskIntentHandler = {
     
         return handlerInput.responseBuilder
             .speak(bodyPartContent)
-            .reprompt(bodyPartContent)
+            // .reprompt(bodyPartContent)
             .getResponse();
     }
 };
